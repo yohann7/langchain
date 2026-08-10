@@ -1,0 +1,7 @@
+version: 1
+level: INFO
+format: json
+redact_fields:
+  - authorization
+  - api_key
+  - token

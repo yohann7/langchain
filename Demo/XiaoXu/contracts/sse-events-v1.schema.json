@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xiaoxu.local/contracts/sse-events-v1.schema.json",
+  "title": "XiaoXu SSE event",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["event", "data"],
+      "properties": {
+        "event": {"const": "run.started"},
+        "data": {
+          "type": "object",
+          "required": ["run_id", "request_id"],
+          "properties": {
+            "run_id": {"type": "string", "minLength": 1},
+            "request_id": {"type": "string", "minLength": 1}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["event", "data"],
+      "properties": {
+        "event": {"const": "response.delta"},
+        "data": {
+          "type": "object",
+          "required": ["text"],
+          "properties": {"text": {"type": "string"}},
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["event", "data"],
+      "properties": {
+        "event": {"const": "tool.status"},
+        "data": {
+          "type": "object",
+          "required": ["name", "state"],
+          "properties": {
+            "name": {"enum": ["get_current_time", "calculate_expression"]},
+            "state": {"enum": ["started", "completed"]}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["event", "data"],
+      "properties": {
+        "event": {"const": "run.completed"},
+        "data": {
+          "type": "object",
+          "required": ["run_id", "final_text", "truncated"],
+          "properties": {
+            "run_id": {"type": "string", "minLength": 1},
+            "final_text": {"type": "string"},
+            "truncated": {"type": "boolean"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["event", "data"],
+      "properties": {
+        "event": {"const": "run.failed"},
+        "data": {
+          "type": "object",
+          "required": ["run_id", "code", "user_message", "retryable"],
+          "properties": {
+            "run_id": {"type": "string", "minLength": 1},
+            "code": {"type": "string", "minLength": 1},
+            "user_message": {"type": "string"},
+            "retryable": {"type": "boolean"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+# Non-sensitive model configuration example.
+# API keys and base URLs stay in .env:
+# DEEPSEEK_API_KEY=...
+# DEEPSEEK_BASE_URL=https://api.deepseek.com
+# ZHIPUAI_API_KEY=...
+# ZHIPUAI_BASE_URL=https://open.bigmodel.cn/api/paas/v4
+# TAVILY_API_KEY=...
+
+active_model: deepseek.deepseek-v4-flash
+model_state_path: .private_agent/model_state.json
+
+# Optional override. If omitted, the built-in DEEPSEEK and ZHIPUAI catalog is used.
+model_catalog:
+  deepseek:
+    api_key_env: DEEPSEEK_API_KEY
+    base_url_env: DEEPSEEK_BASE_URL
+    models:
+      - model_id: deepseek-v4-flash
+        display_name: DeepSeek V4 Flash
+        supports_thinking: true
+        default_thinking_enabled: true
+        supported_reasoning_efforts: [low, medium, high]
+      - model_id: deepseek-v4-pro
+        display_name: DeepSeek V4 Pro
+        supports_thinking: true
+        default_thinking_enabled: true
+        supported_reasoning_efforts: [low, medium, high]
+  zhipuai:
+    api_key_env: ZHIPUAI_API_KEY
+    base_url_env: ZHIPUAI_BASE_URL
+    models:
+      - model_id: glm-5.2
+        display_name: GLM-5.2
+        supports_thinking: true
+        default_thinking_enabled: true
+        supported_reasoning_efforts: [medium, high]
+      - model_id: glm-4-long
+        display_name: GLM-4-Long
+        supports_thinking: false

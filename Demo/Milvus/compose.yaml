@@ -1,0 +1,56 @@
+services:
+  milvus:
+    image: milvusdb/milvus:v2.6.22
+    pull_policy: never
+    command: ["milvus", "run", "standalone"]
+    environment:
+      DEPLOY_MODE: STANDALONE
+      ETCD_USE_EMBED: "true"
+      ETCD_DATA_DIR: /var/lib/milvus/etcd
+      ETCD_CONFIG_PATH: /milvus/configs/embedEtcd.yaml
+      COMMON_STORAGETYPE: local
+    volumes:
+      - ./config/embedEtcd.yaml:/milvus/configs/embedEtcd.yaml:ro
+      - milvus-data:/var/lib/milvus
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://127.0.0.1:9091/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  knowledge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    pull_policy: never
+    depends_on:
+      milvus:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      KNOWLEDGE_RUN_DIR: /data
+      KNOWLEDGE_ALLOWED_ROOTS: '["/imports"]'
+      KNOWLEDGE_MILVUS_URI: http://milvus:19530
+      KNOWLEDGE_EMBEDDING_DEVICE: cuda:0
+      KNOWLEDGE_EMBEDDING_CACHE_DIR: /opt/models/huggingface
+      KNOWLEDGE_API_TOKEN: ${KNOWLEDGE_API_TOKEN:?set KNOWLEDGE_API_TOKEN in .env}
+      KNOWLEDGE_ADMIN_TOKEN: ${KNOWLEDGE_ADMIN_TOKEN:?set KNOWLEDGE_ADMIN_TOKEN in .env}
+    volumes:
+      - ./imports/imports:/imports:ro
+      - ./imports/unsupported:/unsupported
+      - ./imports/failed:/failed
+      - ./runtime/knowledge:/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+
+volumes:
+  milvus-data:
+    name: milvus-data-recovered-20260808

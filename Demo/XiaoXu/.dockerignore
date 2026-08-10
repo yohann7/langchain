@@ -1,0 +1,13 @@
+.env
+.git
+.gitignore
+.codex
+.private_agent
+.vscode
+__pycache__
+*.py[cod]
+*.ipynb
+*.log
+tests
+learn
+langchain1.2_tutorial

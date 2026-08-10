@@ -1,0 +1,83 @@
+vendors:
+  deepseek:
+    api_key_env: DEEPSEEK_API_KEY
+    base_url_env: DEEPSEEK_BASE_URL
+    models:
+      - model_id: deepseek-v4-flash
+        display_name: DeepSeek V4 Flash
+        supports_thinking: true
+        default_thinking_enabled: true
+        supported_reasoning_efforts: [low, medium, high]
+      - model_id: deepseek-v4-pro
+        display_name: DeepSeek V4 Pro
+        supports_thinking: true
+        default_thinking_enabled: true
+        supported_reasoning_efforts: [low, medium, high]
+      - model_id: deepseek-chat
+        display_name: DeepSeek Chat compatibility alias
+        deprecated: true
+        notes:
+          - Compatibility alias scheduled for deprecation by DeepSeek.
+      - model_id: deepseek-reasoner
+        display_name: DeepSeek Reasoner compatibility alias
+        supports_thinking: true
+        default_thinking_enabled: true
+        supported_reasoning_efforts: [low, medium, high]
+        deprecated: true
+        notes:
+          - Compatibility alias scheduled for deprecation by DeepSeek.
+
+  zhipuai:
+    api_key_env: ZHIPUAI_API_KEY
+    base_url_env: ZHIPUAI_BASE_URL
+    models:
+      - model_id: glm-5.2
+        display_name: GLM-5.2
+        supports_thinking: true
+        default_thinking_enabled: true
+        supported_reasoning_efforts: [medium, high]
+      - model_id: glm-5.1
+        display_name: GLM-5.1
+        supports_thinking: true
+        default_thinking_enabled: true
+      - model_id: glm-5
+        display_name: GLM-5
+        supports_thinking: true
+        default_thinking_enabled: true
+      - model_id: glm-5-turbo
+        display_name: GLM-5-Turbo
+        supports_thinking: true
+        default_thinking_enabled: true
+      - model_id: glm-4.7
+        display_name: GLM-4.7
+        supports_thinking: true
+        default_thinking_enabled: true
+      - model_id: glm-4.7-flashx
+        display_name: GLM-4.7-FlashX
+        supports_thinking: true
+        default_thinking_enabled: true
+      - model_id: glm-4.6
+        display_name: GLM-4.6
+        supports_thinking: true
+        default_thinking_enabled: true
+      - model_id: glm-4.5-air
+        display_name: GLM-4.5-Air
+        supports_thinking: true
+        default_thinking_enabled: true
+      - model_id: glm-4.5-airx
+        display_name: GLM-4.5-AirX
+        supports_thinking: true
+        default_thinking_enabled: true
+      - model_id: glm-4-long
+        display_name: GLM-4-Long
+      - model_id: glm-4-flashx-250414
+        display_name: GLM-4-FlashX-250414
+      - model_id: glm-4.7-flash
+        display_name: GLM-4.7-Flash
+        supports_thinking: true
+        default_thinking_enabled: true
+      - model_id: glm-4.5-flash
+        display_name: GLM-4.5-Flash
+        deprecated: true
+      - model_id: glm-4-flash-250414
+        display_name: GLM-4-Flash-250414

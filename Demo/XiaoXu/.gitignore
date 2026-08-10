@@ -1,0 +1,8 @@
+.env
+.private_agent/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.db
+*.db-shm
+*.db-wal

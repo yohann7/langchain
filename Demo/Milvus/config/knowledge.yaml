@@ -1,0 +1,50 @@
+runtime:
+  run_dir: /data
+  database_name: knowledge.db
+  documents_directory: documents
+  transfers_directory: transfers
+  allowed_roots:
+    - /imports
+
+api:
+  host: 0.0.0.0
+  port: 8080
+
+milvus:
+  uri: http://milvus:19530
+  database: knowledge
+  collection: knowledge_chunks_v1
+
+embedding:
+  model: BAAI/bge-m3
+  revision: 5617a9f61b028005a4858fdac845db406aefb181
+  dimension: 1024
+  batch_size: 4
+  device: cuda:0
+  required_gpu_name: NVIDIA GeForce RTX 4070 Laptop GPU
+  cache_dir: /opt/models/huggingface
+
+search:
+  top_k: 10
+  candidate_limit: 50
+
+ingestion:
+  chunk_size_chars: 1600
+  chunk_overlap_chars: 200
+  minimum_non_sensitive_chars: 20
+  maximum_source_bytes: 52428800
+  maximum_extracted_characters: 10000000
+  maximum_office_uncompressed_bytes: 209715200
+  maximum_office_archive_entries: 20000
+  maximum_pdf_pages: 1000
+  maximum_xlsx_rows_per_sheet: 100000
+  maximum_xlsx_columns: 512
+  maximum_xlsx_nonempty_cells: 500000
+  maximum_pptx_slides: 1000
+  maximum_pptx_shapes: 100000
+
+transfer:
+  maximum_archive_bytes: 2147483648
+  maximum_archive_members: 10000
+  maximum_extracted_bytes: 4294967296
+  maximum_compression_ratio: 100.0

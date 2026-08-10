@@ -1,0 +1,36 @@
+use_default_settings:
+  engines:
+    keep_only:
+      - google cse
+      - bing
+      - baidu
+      - mojeek
+      - yandex
+      - naver
+
+server:
+  limiter: false
+
+search:
+  default_lang: auto
+  formats:
+    - html
+    - json
+
+outgoing:
+  request_timeout: 5.0
+  max_request_timeout: 10.0
+
+engines:
+  - name: google cse
+    disabled: false
+  - name: bing
+    disabled: false
+  - name: baidu
+    disabled: false
+  - name: mojeek
+    disabled: false
+  - name: yandex
+    disabled: false
+  - name: naver
+    disabled: false

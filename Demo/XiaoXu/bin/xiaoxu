@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd "$script_dir/.."
+export PYTHONPATH="$script_dir/../src${PYTHONPATH:+:$PYTHONPATH}"
+exec /opt/anaconda3/envs/langchain1.2/bin/python -m private_agent.interfaces.cli.app "$@"

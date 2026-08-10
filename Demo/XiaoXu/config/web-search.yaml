@@ -1,0 +1,8 @@
+version: 1
+max_queries_per_turn: 3
+max_results_per_query: 10
+request_timeout_seconds: 10.0
+searxng:
+  max_attempts: 5
+  retry_delays_seconds: [0.5, 1.0, 2.0, 4.0]
+tavily_fallback_enabled: true

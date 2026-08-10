@@ -1,0 +1,7 @@
+defaults:
+  tools: all-current
+  skills: all-current
+  knowledge_search: allow
+users:
+  usr_example:
+    knowledge_search: deny

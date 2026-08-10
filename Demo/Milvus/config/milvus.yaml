@@ -1,0 +1,11 @@
+etcd:
+  use:
+    embed: true
+common:
+  storageType: local
+localStorage:
+  path: /var/lib/milvus/data
+dataCoord:
+  segment:
+    maxSize: 512
+
